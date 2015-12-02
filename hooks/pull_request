@@ -5,6 +5,8 @@
 import sys
 import json
 
+import datetime
+
 outfile = '/tmp/hook-pull_request.log'
 
 
@@ -21,8 +23,10 @@ try:
 except:
   pass  
 
+i = datetime.datetime.now()
+
 with open(outfile, 'w') as f:
   if is_merged:
-    f.write("merged\n")
+    f.write("%s: merged\n" % i.isoformat())
   else:
-    f.write("not merged\n")
+    f.write("%s: not merged\n" % % i.isoformat())
